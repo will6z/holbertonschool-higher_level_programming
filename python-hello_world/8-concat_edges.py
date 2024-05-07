@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-print("object-oriented programming with Python")
+print(str.split(' ')[-7][-1:] + ',', end='\n')
 
