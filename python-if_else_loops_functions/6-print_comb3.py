@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
-for i in range(10):
-    for j in range(i + 1, 10):
-        print("{:d}{:d}".format(i, j), end=", " if i != 9 or j != 8 else "\n")
+for tens in range(0, 9):
+    for ones in range(tens + 1, 10):
+        if tens != 8 or ones != 9:
+            print("{:d}{:d}".format(tens, ones), end=', ')
+        else:
+            print("{:d}{:d}".format(tens, ones), end='\n')
