@@ -1,15 +1,18 @@
 #!/usr/bin/python3
 from calculator_1 import add, sub, mul, div
 
-a, b = 10, 5
+a = 10
+b = 5
 
 if __name__ == "__main__":
-    results = {
-        "Addition": add(a, b),
-        "Subtraction": sub(a, b),
-        "Multiplication": mul(a, b),
-        "Division": div(a, b)
-    }
+    result = add(a, b)
+    print("{} + {} = {}".format(a, b, result))
 
-    for operation, result in results.items():
-        print(f"{a} {'+' if operation == 'Addition' else '-' if operation == 'Subtraction' else '*' if operation == 'Multiplication' else '/'} {b} = {result}")
+    result = sub(a, b)
+    print("{} - {} = {}".format(a, b, result))
+
+    result = mul(a, b)
+    print("{} * {} = {}".format(a, b, result))
+
+    result = div(a, b)
+    print("{} / {} = {}".format(a, b, result))
