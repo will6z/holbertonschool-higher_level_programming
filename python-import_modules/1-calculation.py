@@ -10,7 +10,4 @@ if __name__ == "__main__":
     result_multiply = calculator_1.multiply(a, b)
     result_divide = calculator_1.divide(a, b)
 
-    print("Addition result:", result_add)
-    print("Subtraction result:", result_subtract)
-    print("Multiplication result:", result_multiply)
-    print("Division result:", result_divide)
+    print("Addition: {} + {} = {}, Subtraction: {} - {} = {}, Multiplication: {} * {} = {}, Division: {} / {} = {}".format(a, b, result_add, a, b, result_subtract, a, b, result_multiply, a, b, result_divide))
