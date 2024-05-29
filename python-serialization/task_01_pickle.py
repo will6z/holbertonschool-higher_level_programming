@@ -38,4 +38,3 @@ class CustomObject:
         except (FileNotFoundError, pickle.UnpicklingError) as e:
             print(f"An error occurred while deserializing: {e}")
             return None
-
