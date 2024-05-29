@@ -1,14 +1,12 @@
 #!/usr/bin/python3
-
 """
-This function writes a string to .txt file
+makin a func that reads a txt. file
 """
 
 
-def write_file(filename="", text=""):
+def read_file(filename=""):
     """
-    In this the code that return the number of char
+    fun takes a filename and opens with open()
     """
-    with open(filename, 'w', encoding='utf-8') as f:
-        return f.write(text)
-
+    with open(filename, encoding='utf-8') as f:
+        print(f.read(), end="")
