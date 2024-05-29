@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
 This function writes a string to .txt file
 """
