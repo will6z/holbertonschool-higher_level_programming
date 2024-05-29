@@ -1,13 +1,16 @@
 #!/usr/bin/python3
+
 """
-func that appends to a file
+makin a func that writes a string to a txt file
 """
 
 
-def append_write(filename="", text=""):
-    """
-    allowing func permission append = 'a'
-    """
-    with open(filename, 'a', encoding='utf-8') as f:
-        return f.write(text)
+def write_file(filename="", text=""):
 
+    """
+    func adds a string to a txt. file
+    """
+
+    with open(filename, 'w', encoding='utf-8') as f:
+        chars_written = f.write(text)
+    return chars_written
