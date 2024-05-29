@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" this func returns a list of ints """
 def pascal_triangle(n):
     """Returns a list"""
     if n <= 0:
