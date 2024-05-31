@@ -4,6 +4,7 @@ import json
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class SimpleAPIHandler(BaseHTTPRequestHandler):
+    """ cmt """
     def do_GET(self):
         if self.path == "/":
             self.send_response(200)
