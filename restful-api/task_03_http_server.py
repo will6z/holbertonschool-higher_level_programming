@@ -1,44 +1,52 @@
 #!/usr/bin/python3
-import http.server
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
-from http.server import HTTPServer, BaseHTTPRequestHandler
 
-class SimpleAPIHandler(BaseHTTPRequestHandler):
-    """ cmt """
+
+class MyHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        if self.path == "/":
-            self.send_response(200)
-            self.send_header("Content-type", "text/plain")
-            self.end_headers()
-            self.wfile.write(b"Hello, this is a simple API!")
-        
-        elif self.path == "/data":
-            self.send_response(200)
-            self.send_header("Content-type", "application/json")
-            self.end_headers()
-            response = {"name": "John", "age": 30, "city": "New York"}
-            self.wfile.write(json.dumps(response).encode())
+        routes = {
+            '/': self.handle_root,
+            '/data': self.handle_data,
+            '/status': self.handle_status
+        }
 
-        elif self.path == "/status":
-            self.send_response(200)
-            self.send_header("Content-type", "application/json")
-            self.end_headers()
-            response = {"status": "OK"}
-            self.wfile.write(json.dumps(response).encode())
+        handler = routes.get(self.path, self.handle_not_found)
+        handler()
 
-        else:
-            self.send_response(404)
-            self.send_header("Content-type", "application/json")
-            self.end_headers()
-            response = {"error": "Endpoint not found"}
-            self.wfile.write(json.dumps(response).encode())
+    def handle_root(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
+        self.wfile.write(b"Hello, this is a simple API!")
 
-def run(server_class=HTTPServer, handler_class=SimpleAPIHandler, port=8000):
-    server_address = ('', port)
-    httpd = server_class(server_address, handler_class)
-    print(f"Starting httpd server on port {port}")
+    def handle_data(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'application/json')
+        self.end_headers()
+        response = {"name": "John", "age": 30, "city": "New York"}
+        self.wfile.write(json.dumps(response).encode())
+
+    def handle_status(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
+        self.wfile.write(b"OK")
+
+    def handle_not_found(self):
+        self.send_response(404)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
+        self.wfile.write(b"Endpoint not found")
+
+
+def run_server():
+    server_address = ('', 8000)
+    httpd = HTTPServer(server_address, MyHTTPRequestHandler)
+    print('Starting server on port 8000...')
     httpd.serve_forever()
 
+
 if __name__ == "__main__":
-    run()
+    run_server()
 
