@@ -1,7 +1,10 @@
--- This script prints the description of the table first_table from the specified database.
+-- This script creates the table first_table with specified columns and properties.
 
-SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH
-FROM INFORMATION_SCHEMA.COLUMNS
-WHERE TABLE_SCHEMA = 'hbtn_0c_0'  -- Replace 'hbtn_0c_0' with the actual database name
-  AND TABLE_NAME = 'first_table';
+CREATE TABLE IF NOT EXISTS `first_table` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `name` varchar(128) DEFAULT NULL,
+    `c` char(1) DEFAULT NULL,
+    `created_at` date DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
