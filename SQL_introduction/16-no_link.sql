@@ -1,7 +1,15 @@
--- This script lists all records from the table second_table.
+import { uploadPhoto, createUser } from './utils';
 
-SELECT score, name
-FROM second_table
-WHERE name IS NOT NULL
-ORDER BY score DESC;
+export default async function asyncUploadUser() {
+  try {
+    // Call uploadPhoto and createUser asynchronously
+    const [photo, user] = await Promise.all([uploadPhoto(), createUser()]);
+
+    // Return the responses in the specified format
+    return { photo, user };
+  } catch (error) {
+    // If any error occurs, return an empty object with null values
+    return { photo: null, user: null };
+  }
+}
 
