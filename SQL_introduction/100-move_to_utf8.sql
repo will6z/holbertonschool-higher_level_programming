@@ -1,3 +1,6 @@
+-- Select the database first
+USE hbtn_0c_0;
+
 -- Convert database to UTF8 (utf8mb4) with utf8mb4_unicode_ci collation
 ALTER DATABASE hbtn_0c_0 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
