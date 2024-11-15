@@ -1,32 +1,37 @@
 #!/usr/bin/python3
-"""
-lists the first State object from database hbtn_0e_6_usa
+"""print the first state in database hbt..."""
 
-uses SQLAlchemy
-"""
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
 if __name__ == "__main__":
+    # get the sql username, password, and database name
     username = sys.argv[1]
     password = sys.argv[2]
-    db_name = sys.argv[3]
+    dbname = sys.argv[3]
 
+    # create engine to connect to server
     engine = create_engine(
-            f'mysql+mysqldb://{username}:{password}@localhost:3306/{db_name}',
-            pool_pre_ping=True)
+        f'mysql+mysqldb://{username}:{password}@localhost:3306/{dbname}',
+        pool_pre_ping=True
+    )
 
+    # create a configured session class
     Session = sessionmaker(bind=engine)
 
+    # create the session
     session = Session()
 
-    first_state = session.query(State).order_by(State.id).first()
+    # query the first state obj by id
+    state = session.query(State).order_by(State.id).first()
 
-    if first_state is None:
-        print("Nothing")
+    # prints the first state if not it will print 'nothing'
+    if state:
+        print(f"{state.id}: {state.name}")
     else:
-        print(f"{first_state.id}: {first_state.name}")
+        print("Nothing")
 
+    # close the session
     session.close()
